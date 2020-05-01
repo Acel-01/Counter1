@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <link rel="stylesheet" href="./css/Count.css">
+    <link rel="shortcut icon" href="./img/best of me lil baby.PNG" type="image/x-icon">
+</head>
+
+<body onload="incrementCount(10)">
+    <script src="./js/Count.js"></script>
+    <div class="main_container" id="id_main_container">
+      <div class="container_inner" id="display_div_id">
+      </div>
+    </div>
+    <button id="too" onclick="too()">Decrease count</button>
+    <button id="toot" onclick="toot()">Increase count</button>
+</body>
+
+<script>
+  var counter_list = [00,00000,00000];
+  var str_counter_0 = counter_list[0];
+  var str_counter_1 = counter_list[1];
+  var str_counter_2 = counter_list[2];
+  var display_str = "";
+  var display_div = document.getElementById("display_div_id");
+  
+  function incrementCount(current_count){
+    setInterval(function(){
+      // clear count
+      while (display_div.hasChildNodes()) {
+          display_div.removeChild(display_div.lastChild);
+      }
+      str_counter_0++;
+      if (str_counter_0 > 99) {
+        str_counter_0 = 0; // reset count
+        str_counter_1++;    // increase next count
+        function too(){
+        str_counter_1-=1;
+      }
+      function toot(){
+        str_counter_1+=1;
+      }
+      }
+      if(str_counter_1>99999){
+        str_counter_2++;
+      }
+      
+      display_str = str_counter_2.toString() + str_counter_1.toString() + str_counter_0.toString();
+      for (var i = 0; i < display_str.length; i++) {
+        var new_span = document.createElement('span');
+        new_span.className = 'num_tiles';
+        new_span.innerText = display_str[i];
+        display_div.appendChild(new_span);
+      }
+    },1000);
+  }
+</script>
+</html>
